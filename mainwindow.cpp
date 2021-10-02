@@ -120,6 +120,39 @@ void MainWindow::on_set_point2_clicked()
     p2.setY(ui->frame->y);
 }
 
+void MainWindow::on_Draw_clicked()
+{
+    int r0=ui->circle_radius->value();
+    QPixmap *pix=new QPixmap(450,450);
+    QPainter *paint=new QPainter();
+    if(ui->draw_circle->isChecked()){
+        p1.setX(ui->frame->x);
+        p1.setY(ui->frame->y);
+        /*int a,b;
+        QImage img=QImage(450,450,QImage::Format_RGB888);
+        for(a=-r0;a<=r0;a++){
+            for(b=-r0;b<=r0;b++){
+                if((a*a)+(b*b)<=(r0*r0)){
+                    img.setPixelColor(p1.x()+a,p1.y()+b,qRgb(255,255,255));
+                }
+            }
+        }*/
+        paint->begin(pix);
+        paint->setPen(Qt::lightGray);
+        paint->drawEllipse(p1,r0,r0);
+        ui->frame->setPixmap(*pix);
+        paint->end();
+        //ui->frame->setPixmap(QPixmap::fromImage(img));
+    }
+    if(ui->draw_line->isChecked()){
+        paint->begin(pix);
+        paint->setPen(Qt::white);
+        paint->drawLine(p1,p2);
+        ui->frame->setPixmap(*pix);
+        paint->end();
+    }
+}
+
 void MainWindow::on_DDALine_clicked()
 {
     DDAline(255,255,0);
