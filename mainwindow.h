@@ -22,7 +22,7 @@ public:
 private slots:
     void on_show_axes_clicked();
 
-    //void on_Draw_clicked();
+    void on_Draw_clicked();
 
     void on_set_point1_clicked();
 
